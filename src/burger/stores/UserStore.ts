@@ -1,6 +1,6 @@
 import { observable, action, computed } from "mobx";
 import RootStore from "./RootStore";
-import { User, userInfo } from "../types";
+import { User, userInfo } from "../../types";
 
 class UserStore {
   rootStore: RootStore;

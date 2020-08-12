@@ -1,12 +1,15 @@
 import { observable, action, runInAction } from "mobx";
-import { getBurgers, getDrinks } from "../api";
-import { Product } from "../types";
+import { getBurgers, getDrinks } from "../../api";
+import { Product } from "../../types";
 
 export class ProductsStore {
-  @observable drinks: Product[] = [];
-  @observable burgers: Product[] = [];
+  @observable
+  drinks: Product[] = [];
+  @observable
+  burgers: Product[] = [];
 
-  @observable isLoading: boolean = true;
+  @observable
+  isLoading: boolean = true;
 
   @action
   fetchProducts = async () => {

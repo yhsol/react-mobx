@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { StoresProvider } from "./StoresProvider";
+import { StoresProvider } from "./burger/StoresProvider";
 import { StoreProvider, StoreContext } from "./mobx-todo/utils/RootStore";
 import { TodoList } from "./mobx-todo/stores/TodoListStore";
 

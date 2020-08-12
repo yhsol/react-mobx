@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 import RootStore from "./RootStore";
-import { User } from "../types";
+import { User } from "../../types";
 
 import { Session } from "inspector";
 

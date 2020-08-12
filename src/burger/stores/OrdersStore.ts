@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 import { ProductsStore } from "./ProductsStore";
-import { Product } from "../types";
+import { Product } from "../../types";
 
 type Order = {
   drink: Product;
@@ -11,13 +11,14 @@ type Order = {
 export class OrdersStore {
   constructor(private productsStore: ProductsStore) {}
 
-  @observable orders: Order[] = [];
+  @observable
+  orders: Order[] = [];
 
   @action
   addOrder = (drinkName: string, burgerName: string) => {
     const drink = this.productsStore.drinks.find((d) => d.name === drinkName);
     const burger = this.productsStore.burgers.find(
-      (d) => d.name === burgerName
+      (d) => d.name === burgerName,
     );
     console.log("drink: ", drink, "burger: ", burger);
 
