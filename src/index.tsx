@@ -1,14 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, { useContext } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { StoresProvider } from "./StoresProvider";
+import { StoreProvider, StoreContext } from "./mobx-todo/utils/RootStore";
+import { TodoList } from "./mobx-todo/stores/TodoListStore";
+
+const todoList = new TodoList([
+  "test1",
+  "test2",
+  "test3",
+]);
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <StoresProvider>
+  <StoreProvider value={todoList}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </StoreProvider>,
+  document.getElementById("root"),
 );
 
 // If you want your app to work offline and load faster, you can change
