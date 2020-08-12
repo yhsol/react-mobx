@@ -21,5 +21,5 @@ class SessionStore {
 }
 
 export default SessionStore;
-const SessionStore = "";
-export default SessionStore;
+// const SessionStore = "";
+// export default SessionStore;
