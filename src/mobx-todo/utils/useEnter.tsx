@@ -1,6 +1,6 @@
 import { KeyboardEvent } from "react";
 
-function onPressEnter(cb: any) {
+function onEnterPress(cb: any) {
   return (e: KeyboardEvent) => {
     if (e.key === "Enter") {
       cb();
@@ -8,4 +8,4 @@ function onPressEnter(cb: any) {
   };
 }
 
-export default onPressEnter;
+export default onEnterPress;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useStore } from "../utils/useStore";
-import onPressEnter from "../utils/useEnter";
+import onEnterPress from "../utils/useEnter";
 
 function TodoNew() {
   const [newTodo, setTodo] = useState("");
@@ -16,7 +16,7 @@ function TodoNew() {
       <input
         type="text"
         value={newTodo}
-        onKeyDown={onPressEnter(addTodo)}
+        onKeyDown={onEnterPress(addTodo)}
         onChange={(e) => setTodo(e.target.value)}
       />
       <button onClick={addTodo}>Add Todo</button>

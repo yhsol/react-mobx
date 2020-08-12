@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useStore } from "../utils/useStore";
-import onPressEnter from "../utils/useEnter";
+import onEnterPress from "../utils/useEnter";
 import TodoItemClass from "../stores/TodoItemStore";
 
 type Props = {
@@ -24,7 +24,7 @@ function TodoItem({ todo }: Props) {
         ? <div>
           <input
             type="text"
-            onKeyDown={onPressEnter(saveText)}
+            onKeyDown={onEnterPress(saveText)}
             onChange={(e) => setText(e.target.value)}
           />
           <button onClick={saveText}>save</button>
