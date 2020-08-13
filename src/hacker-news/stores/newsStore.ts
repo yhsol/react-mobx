@@ -8,23 +8,22 @@ export class NewsStore {
     hits: [],
   };
   @observable
-  hits: any = [];
+  data: any = [];
 
   @observable
   requestState = "pending";
 
   @action
-  fetchData = async (params?: string) => {
+  fetchData = async (query?: string) => {
     this.requestState = "pending";
 
-    const result = await newsListRepository.fetchData();
+    const result = await newsListRepository.fetchData(query);
     const { data, status } = result;
-    console.log(data);
 
     runInAction(() => {
       this.requestState = `done: ${status}`;
       this.news.hits = data.hits;
-      this.hits = data;
+      this.data = data;
     });
   };
 }
