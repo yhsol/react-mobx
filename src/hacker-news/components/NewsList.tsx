@@ -1,41 +1,40 @@
 import React, { useState, useEffect } from "react";
-// import { useStore } from "../utils/useStore";
 import { useObserver } from "mobx-react-lite";
 import { useRootStores } from "../../RootStoresProvider";
+// import { useStore } from "../utils/useStore";
 // import { useStores } from "../HnStoresProvider";
 
 function NewsList() {
   const { newsStore } = useRootStores();
+  const [query, setQuery] = useState("mobx");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    newsStore.fetchData();
-  }, []);
+    newsStore.fetchData(query);
+  }, [search]);
 
   return useObserver(() => {
-    const { news, hits, requestState } = newsStore;
-    console.log(requestState);
+    const { news } = newsStore;
 
-    return (<ul>
-      {/* {news.hits.map((item: Hits) => (
-        <li key={item.objectID}>
-          <a href={item.url}>{item.title}</a>
-        </li>
-      ))} */}
-      {/* {hits.map((item: string, index: any) => (
-        <div key={index}>{item}</div>
-      ))} */}
-      {news.hits?.map((item: any, index: any) => (
-        <div key={index}>
-          {item.title}
-        </div>
-      ))}
-      {/* {hits.hits?.map((item: any, index: any) => (
-        <div key={index}>
-          {item.title}
-        </div>
-      ))} */}
-      {/* test */}
-    </ul>);
+    return (
+      <div>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button type="button" onClick={() => setSearch(query)}>
+          Search
+        </button>
+        <ul>
+          {news.hits?.map((item: any, index: any) => (
+            <div key={index}>
+              {item.title}
+            </div>
+          ))}
+        </ul>
+      </div>
+    );
   });
 }
 
