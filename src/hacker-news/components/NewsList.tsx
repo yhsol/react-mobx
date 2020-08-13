@@ -14,7 +14,7 @@ function NewsList() {
   }, [search]);
 
   return useObserver(() => {
-    const { news } = newsStore;
+    const { news, requestState } = newsStore;
 
     return (
       <div>
@@ -27,11 +27,13 @@ function NewsList() {
           Search
         </button>
         <ul>
-          {news.hits?.map((item: any, index: any) => (
-            <div key={index}>
-              {item.title}
-            </div>
-          ))}
+          {requestState === "pending"
+            ? <div>Loading..</div>
+            : news.hits?.map((item: any, index: any) => (
+              <div key={index}>
+                {item.title}
+              </div>
+            ))}
         </ul>
       </div>
     );
