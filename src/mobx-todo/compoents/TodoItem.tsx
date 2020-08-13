@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useStore } from "../utils/useStore";
 import onEnterPress from "../utils/useEnter";
 import TodoItemClass from "../stores/TodoItemStore";
+import { useRootStores } from "../../RootStoresProvider";
 
 type Props = {
   todo: TodoItemClass;
 };
 
 function TodoItem({ todo }: Props) {
-  const todoList = useStore();
+  const { todoListStore } = useRootStores();
+
   const [newText, setText] = useState("");
   const [isEditing, setEdit] = useState(false);
 
@@ -38,7 +40,7 @@ function TodoItem({ todo }: Props) {
           >
           </input>
           <button onClick={() => setEdit(true)}>edit</button>
-          <button onClick={() => todoList.removeTodo(todo)}>X</button>
+          <button onClick={() => todoListStore.removeTodo(todo)}>X</button>
         </div>}
     </div>
   );

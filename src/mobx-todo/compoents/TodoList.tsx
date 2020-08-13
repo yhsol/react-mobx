@@ -2,20 +2,21 @@ import React from "react";
 import { useStore } from "../utils/useStore";
 import { useObserver } from "mobx-react-lite";
 import TodoItem from "./TodoItem";
+import { useRootStores } from "../../RootStoresProvider";
 
 function TodoList() {
-  const todoList = useStore();
+  const { todoListStore } = useRootStores();
   return useObserver(() => (
     <div>
       <div>
         <span>Open Todos</span>
-        {todoList.openTodos.map((todo) =>
+        {todoListStore.openTodos.map((todo) =>
           <TodoItem key={`${todo.id}_${todo.text}`} todo={todo} />
         )}
       </div>
       <div>
         <span>Completed Todos</span>
-        {todoList.completedTodos.map((todo) =>
+        {todoListStore.completedTodos.map((todo) =>
           <TodoItem key={`${todo.id}_${todo.text}`} todo={todo} />
         )}
       </div>

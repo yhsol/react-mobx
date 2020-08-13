@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useObserver } from "mobx-react-lite";
-import { useStores } from "../StoresProvider";
+import { useStores } from "../utils/StoresProvider";
+import { useRootStores } from "../../RootStoresProvider";
 
 function OrdersList() {
-  const { ordersStore } = useStores();
+  const { ordersStore } = useRootStores();
 
   return useObserver(() => {
     const { orders } = ordersStore;
+    console.log(orders);
 
     if (!orders.length) {
       return <p>No orders</p>;

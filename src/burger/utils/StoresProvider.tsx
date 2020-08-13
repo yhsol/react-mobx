@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
-import { OrdersStore } from "./stores/OrdersStore";
-import { ProductsStore } from "./stores/ProductsStore";
+import { OrdersStore } from "../stores/OrdersStore";
+import { ProductsStore } from "../stores/ProductsStore";
 
 type StoresContextValue = {
   productsStore: ProductsStore;

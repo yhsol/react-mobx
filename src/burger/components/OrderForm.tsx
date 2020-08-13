@@ -1,12 +1,13 @@
 import React, { useRef, useEffect } from "react";
-import { useStores } from "../StoresProvider";
+import { useStores } from "../utils/StoresProvider";
 import { useObserver } from "mobx-react-lite";
+import { useRootStores } from "../../RootStoresProvider";
 
 function OrderForm() {
   const drinkRef = useRef<HTMLSelectElement>(null);
   const burgerRef = useRef<HTMLSelectElement>(null);
 
-  const { productsStore, ordersStore } = useStores();
+  const { productsStore, ordersStore } = useRootStores();
   const { fetchProducts } = productsStore;
   const { addOrder } = ordersStore;
 
