@@ -12,7 +12,6 @@ import NewsItemStore from "../entity/newsItemStore";
 import autobind from "autobind-decorator";
 
 configure({ enforceActions: "observed" });
-console.log("github");
 
 @autobind
 export class NewsStore {
