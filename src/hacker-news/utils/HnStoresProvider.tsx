@@ -7,7 +7,7 @@ type StoresContextValue = {
 };
 
 const StoresContext = React.createContext<StoresContextValue>(
-  {} as StoresContextValue,
+  {} as StoresContextValue
 );
 
 export function StoresProvider({ children }: { children: any }) {

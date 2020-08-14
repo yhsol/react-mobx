@@ -6,6 +6,7 @@ import OrderForm from "./burger/components/OrderForm";
 import TodoList from "./mobx-todo/compoents/TodoList";
 import TodoNew from "./mobx-todo/compoents/TodoNew";
 import NewsList from "./hacker-news/components/NewsList";
+import BookMarks from "./hacker-news/components/BookMarks";
 
 function App() {
   const styles = {
@@ -32,6 +33,10 @@ function App() {
       <div style={{ ...styles }}>
         News
         <NewsList />
+      </div>
+      <div style={{ ...styles }}>
+        Bookmarks
+        <BookMarks />
       </div>
     </>
   );

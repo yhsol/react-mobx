@@ -22,8 +22,8 @@ function TodoItem({ todo }: Props) {
 
   return (
     <div>
-      {isEditing
-        ? <div>
+      {isEditing ? (
+        <div>
           <input
             type="text"
             onKeyDown={onEnterPress(saveText)}
@@ -31,17 +31,18 @@ function TodoItem({ todo }: Props) {
           />
           <button onClick={saveText}>save</button>
         </div>
-        : <div>
+      ) : (
+        <div>
           <span>{todo.text}</span>
           <input
             type="checkbox"
             onChange={todo.toggleIsDone}
             defaultChecked={todo.isDone}
-          >
-          </input>
+          ></input>
           <button onClick={() => setEdit(true)}>edit</button>
           <button onClick={() => todoListStore.removeTodo(todo)}>X</button>
-        </div>}
+        </div>
+      )}
     </div>
   );
 }

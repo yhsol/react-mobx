@@ -12,7 +12,7 @@ type StoresContextValue = {
 };
 
 const StoresContext = React.createContext<StoresContextValue>(
-  {} as StoresContextValue,
+  {} as StoresContextValue
 );
 
 export function RootStoresProvider({ children }: { children: any }) {

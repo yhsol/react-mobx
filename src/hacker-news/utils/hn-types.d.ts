@@ -1,7 +1,7 @@
 export type Hits = {
-  objectID: number;
-  url: string;
-  title: string;
+  objectID?: number;
+  url?: string;
+  title?: string;
 };
 
 export type News = AxiosResponse<any> & {
