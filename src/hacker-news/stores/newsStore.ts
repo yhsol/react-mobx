@@ -12,6 +12,7 @@ import NewsItemStore from "../entity/newsItemStore";
 import autobind from "autobind-decorator";
 
 configure({ enforceActions: "observed" });
+console.log("github");
 
 @autobind
 export class NewsStore {
@@ -47,7 +48,7 @@ export class NewsStore {
               objectID: item.objectID,
               title: item.title,
               url: item.url,
-            })
+            }),
         );
       });
     } catch (error) {
@@ -74,7 +75,7 @@ export class NewsStore {
             objectID: item.objectID,
             title: item.title,
             url: item.url,
-          })
+          }),
       );
     } catch (error) {
       console.log(error);
