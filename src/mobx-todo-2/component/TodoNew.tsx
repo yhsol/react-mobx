@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useStore } from "../utils/useStore";
-import onEnterPress from "../utils/useEnter";
+import { useStore } from "../useStore";
+import onEnterPress from "../useEnter";
 import { useRootStores } from "../../RootStoresProvider";
 
 function TodoNew() {
   const [newTodo, setTodo] = useState("");
-  const { todoListStore } = useRootStores();
+  const { todoListStore2 } = useRootStores();
 
   const addTodo = () => {
-    todoListStore.addTodo(newTodo);
+    todoListStore2.addTodo(newTodo);
     setTodo("");
   };
 
