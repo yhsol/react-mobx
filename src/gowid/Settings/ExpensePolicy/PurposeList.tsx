@@ -4,6 +4,7 @@ import AddPurpose from "./AddPurpose";
 import ExpensePolicyModel from "./model/ExpensePolicyModel";
 import { useRootStores } from "../../../RootStoresProvider";
 import { observer } from "mobx-react-lite";
+import PurposeItem from "./PurposeItem";
 
 function PurposeList() {
   const { expensePolicyStore } = useRootStores();
@@ -27,6 +28,24 @@ function PurposeList() {
 
   const border = "1px solid black";
 
+  // 여기서 바로 item 을 이렇게 풀어서 써도 되고,
+  // 아래에서와 같이 컴포넌트를 만들어서 써도 됨.
+  const expensePolicyListMap = expensePolicyList.map((item, index) => (
+    <tr>
+      <td style={{ border }}>{item.purpose}</td>
+      <td style={{ border }}>{item.category}</td>
+      <td style={{ border }}>{item.limit}</td>
+      <td>
+        <button onClick={() => deleteWithId(item.purpose)}>{`X`}</button>
+      </td>
+      <td>
+        <button onClick={() => editItem(item)}>{`>`}</button>
+      </td>
+    </tr>
+  ));
+
+  console.log("-----PurposeList");
+
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -45,19 +64,12 @@ function PurposeList() {
         >
           <tbody>
             {expensePolicyList.map((item, index) => (
-              <tr key={index}>
-                <td style={{ border }}>{item.purpose}</td>
-                <td style={{ border }}>{item.category}</td>
-                <td style={{ border }}>{item.limit}</td>
-                <td>
-                  <button
-                    onClick={() => deleteWithId(item.purpose)}
-                  >{`X`}</button>
-                </td>
-                <td>
-                  <button onClick={() => editItem(item)}>{`>`}</button>
-                </td>
-              </tr>
+              <PurposeItem
+                item={item}
+                key={index}
+                deleteWithId={deleteWithId}
+                editItem={editItem}
+              />
             ))}
           </tbody>
         </table>

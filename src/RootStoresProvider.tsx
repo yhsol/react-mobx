@@ -6,6 +6,8 @@ import { NewsStore } from "./hacker-news/stores/newsStore";
 import { TodoListStore } from "./mobx-todo-2/store/TodoListStore";
 import { ExpensePolicyStore } from "./gowid/Settings/ExpensePolicy/stores/ExpensePolicyStore";
 import CounterStore from "./counter/store/CounterStore";
+import MarketStore from "./supermarket/store/MarketStore";
+import { MemberManagementStore } from "./gowid/MemberManagement/store/MemberManagementStore";
 
 type StoresContextValue = {
   productsStore: ProductsStore;
@@ -15,6 +17,8 @@ type StoresContextValue = {
   todoListStore2: TodoListStore;
   expensePolicyStore: ExpensePolicyStore;
   counterStore: CounterStore;
+  marketStore: MarketStore;
+  memberManagementStore: MemberManagementStore;
 };
 
 const StoresContext = React.createContext<StoresContextValue>(
@@ -29,6 +33,8 @@ export function RootStoresProvider({ children }: { children: any }) {
   const todoListStore2 = new TodoListStore(["test2", "test2", "tset3"]);
   const expensePolicyStore = new ExpensePolicyStore();
   const counterStore = new CounterStore();
+  const marketStore = new MarketStore();
+  const memberManagementStore = new MemberManagementStore();
 
   const rootStore = {
     productsStore,
@@ -38,6 +44,8 @@ export function RootStoresProvider({ children }: { children: any }) {
     todoListStore2,
     expensePolicyStore,
     counterStore,
+    marketStore,
+    memberManagementStore,
   };
 
   return (
@@ -50,6 +58,8 @@ export function RootStoresProvider({ children }: { children: any }) {
         todoListStore2,
         expensePolicyStore,
         counterStore,
+        marketStore,
+        memberManagementStore,
       }}
     >
       {children}

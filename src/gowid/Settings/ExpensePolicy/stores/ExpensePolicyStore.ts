@@ -39,8 +39,19 @@ export class ExpensePolicyStore {
       const res = await ExpensePolicyRepository.deleteWithId(purpose);
       runInAction(() => {
         if (res !== "") {
-          this.expensePolicyList = this.expensePolicyList.filter(
-            (item: ExpensePolicyModel) => item.purpose !== purpose
+          // 이렇게 filter 한 뒤에 override 하거나, splice 사용
+          // this.expensePolicyList = this.expensePolicyList.filter(
+          //   (item: ExpensePolicyModel) => item.purpose !== purpose
+          // );
+          const itemToDelete = this.expensePolicyList.find(
+            (item) => item.purpose === purpose
+          );
+          return (
+            itemToDelete &&
+            this.expensePolicyList.splice(
+              this.expensePolicyList.indexOf(itemToDelete),
+              1
+            )
           );
         }
       });

@@ -9,8 +9,9 @@ import NewsList from "./hacker-news/components/NewsList";
 import BookMarks from "./hacker-news/components/BookMarks";
 import TodoList2 from "./mobx-todo-2/component/TodoList";
 import TodoNew2 from "./mobx-todo-2/component/TodoNew";
-import ExpensePolicyList from "./gowid/Settings/ExpensePolicy/ExpensePolicyList";
+import ExpensePolicy from "./gowid/Settings/ExpensePolicy/ExpensePolicy";
 import Counter from "./counter/component/Counter";
+import SuperMarket from "./supermarket/component/SuperMarket";
 function App() {
   const styles = {
     margin: "20px",
@@ -24,12 +25,16 @@ function App() {
         <div>Eating Burger 🍔 | Check Todo 📃 | Read News 🗞</div>
       </div>
       <div style={{ ...styles }}>
+        SuperMarket
+        <SuperMarket />
+      </div>
+      <div style={{ ...styles }}>
         Counter
         <Counter />
       </div>
       <div style={{ ...styles }}>
         Expense Policy
-        <ExpensePolicyList />
+        <ExpensePolicy />
       </div>
       <div style={{ ...styles }}>
         Todo

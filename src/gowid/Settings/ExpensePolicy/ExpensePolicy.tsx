@@ -7,7 +7,7 @@ enum Tabs {
   SUBBMIT_ADMIT = "SUBBMIT_ADMIT",
 }
 
-const ExpensePolicyList = observer(() => {
+const ExpensePolicy = observer(() => {
   const [tabs, setTabs] = useState(Tabs.PURPOSE_ACCOUNT);
 
   return (
@@ -43,4 +43,4 @@ const ExpensePolicyList = observer(() => {
   );
 });
 
-export default ExpensePolicyList;
+export default ExpensePolicy;
