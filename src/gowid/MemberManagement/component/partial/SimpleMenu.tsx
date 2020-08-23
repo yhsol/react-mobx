@@ -4,17 +4,20 @@ import { AlertCondition } from "../../define/Constants";
 import MemberManagementModel from "../../model/MemberManagementModel";
 import { MemberManagementStore } from "../../store/MemberManagementStore";
 import { Button, Menu, MenuItem } from "@material-ui/core";
+import { useRootStores } from "../../../../RootStoresProvider";
+import { observer } from "mobx-react-lite";
 
 type simpleMenuPropsT = {
-  items: string[];
-  memberInfo: MemberManagementModel;
-  memberManagementStore: MemberManagementStore;
+  alertCondition: string[];
+  memberItem: MemberManagementModel;
 };
 
-export default function SimpleMenu(simpleMenuProps: simpleMenuPropsT) {
-  const { items, memberInfo, memberManagementStore } = simpleMenuProps;
+function SimpleMenu(simpleMenuProps: simpleMenuPropsT) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   // const [open, setOpen] = React.useState(false);
+
+  const { memberManagementStore } = useRootStores();
+  const { alertCondition, memberItem } = simpleMenuProps;
 
   // TODO: alertItem 을 기반으로 작업 분기. 관리 주의 필요
   const [alertItem, setAlertItem] = React.useState("");
@@ -63,7 +66,7 @@ export default function SimpleMenu(simpleMenuProps: simpleMenuPropsT) {
     alert("click buttonConfirmText");
     setAlertOpen(false);
 
-    if (memberInfo.isTransactionSubmitted === false) {
+    if (memberItem.isTransactionSubmitted === false) {
       setAlertItem(AlertCondition.INCOMPLETE_SUBMIT);
       setAlertOpen(true);
       return;
@@ -72,7 +75,7 @@ export default function SimpleMenu(simpleMenuProps: simpleMenuPropsT) {
 
   // 지출 내역 상태 확인
   function checkSubmitComplete() {
-    if (memberInfo.isTransactionSubmitted === false) {
+    if (memberItem.isTransactionSubmitted === false) {
       setAlertItem(AlertCondition.INCOMPLETE_SUBMIT);
       setAlertOpen(true);
       return false;
@@ -86,7 +89,7 @@ export default function SimpleMenu(simpleMenuProps: simpleMenuPropsT) {
     if (checkSubmitComplete() === false) return;
 
     alert("비활성 요청");
-    memberInfo.toggleActive();
+    memberItem.toggleActive();
   }
 
   // 멤버 삭제
@@ -122,7 +125,7 @@ export default function SimpleMenu(simpleMenuProps: simpleMenuPropsT) {
         onClose={handleClose}
       >
         {/* Dialog Items */}
-        {items.map((item: string, index: any) => (
+        {alertCondition.map((item: string, index: any) => (
           <MenuItem key={index} onClick={() => handleAlertOpen(item)}>
             {item === AlertCondition.EDIT_MEMBER_INFO ? (
               <div style={{ color: "gray" }}>정보 수정</div>
@@ -140,7 +143,7 @@ export default function SimpleMenu(simpleMenuProps: simpleMenuPropsT) {
                 return (
                   <AlertDialog
                     openFl={alertOpen}
-                    title={`${memberInfo.memberItem.name} 비활성 처리할까요?`}
+                    title={`${memberItem.name} 비활성 처리할까요?`}
                     message={`비활성 요청`}
                     buttonConfirmText={"네, 비활성 할래요"}
                     handleAlertClose={handleAlertClose}
@@ -152,13 +155,13 @@ export default function SimpleMenu(simpleMenuProps: simpleMenuPropsT) {
                 return (
                   <AlertDialog
                     openFl={alertOpen}
-                    title={`'${memberInfo.memberItem.name}님을 멤버 목록에서 삭제할까요?`}
+                    title={`'${memberItem.name}님을 멤버 목록에서 삭제할까요?`}
                     message={`삭제 요청`}
                     buttonConfirmText={"네, 삭제할래요"}
                     handleAlertClose={handleAlertClose}
                     onClickAlertCancel={onClickAlertCancel}
                     onClickAlertConfirm={() =>
-                      onClickDeleteMember(memberInfo.memberItem.id)
+                      onClickDeleteMember(memberItem.id)
                     }
                   />
                 );
@@ -194,3 +197,5 @@ export default function SimpleMenu(simpleMenuProps: simpleMenuPropsT) {
     </div>
   );
 }
+
+export default observer(SimpleMenu);

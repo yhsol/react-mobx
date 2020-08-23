@@ -1,13 +1,26 @@
-import { observable, action } from "mobx";
+import { observable, action, set } from "mobx";
 import autobind from "autobind-decorator";
 import { memberInfoType } from "../memberManagement";
 
 @autobind
 export default class MemberManagementModel {
+  // @observable
+  // memberItem: memberInfoType = {
+  //   id: "",
+  // };
   @observable
-  memberItem: memberInfoType = {
-    id: "",
-  };
+  id: string = "";
+  @observable
+  avatar: string = "";
+  @observable
+  name: string = "";
+  @observable
+  department: string = "";
+  @observable
+  position: string = "";
+  @observable
+  email: string = "";
+
   @observable
   isChecked: boolean = false;
   @observable
@@ -18,7 +31,8 @@ export default class MemberManagementModel {
   isActive: boolean = true;
 
   constructor(memberItem: memberInfoType) {
-    this.memberItem = memberItem;
+    // this.memberItem = memberItem;
+    set(this, memberItem);
   }
 
   @action

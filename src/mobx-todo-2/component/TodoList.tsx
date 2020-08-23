@@ -10,8 +10,8 @@ function TodoList() {
     <div>
       <div>
         <span>Open Todos</span>
-        {todoListStore2.openTodos.map((todo) => (
-          <TodoItem key={`${todo.id}-${todo.text}`} todo={todo} />
+        {todoListStore2.openTodos.map((todo, index) => (
+          <TodoItem key={`${todo.id}-${todo.text}-${index}`} todo={todo} />
         ))}
       </div>
       <div>

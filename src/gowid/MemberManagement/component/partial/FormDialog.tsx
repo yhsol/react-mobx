@@ -17,6 +17,8 @@ import {
 } from "@material-ui/core";
 import { AlertCondition } from "../../define/Constants";
 import { memberInfoType } from "../../memberManagement";
+import { observer } from "mobx-react-lite";
+import { useRootStores } from "../../../../RootStoresProvider";
 
 // TODO:
 // - input: 따로 유효성 검사에 따른 액션을 하기위해 required 가 아니라 따로 체크하고 액션을 줘야할 듯.
@@ -40,8 +42,11 @@ type FormDialogT = {
   addMember: (params: memberInfoType) => Promise<void>;
 };
 
-export default function FormDialog(FormDialogProps: FormDialogT) {
+function FormDialog() {
   const classes = useStyles();
+  const { memberManagementStore } = useRootStores();
+  const { addMember } = memberManagementStore;
+
   const initialMemberInfo = {
     id: "createID",
     avatar: "createAvatar",
@@ -137,7 +142,7 @@ export default function FormDialog(FormDialogProps: FormDialogT) {
 
     if (validationCheck() === false) return;
 
-    FormDialogProps.addMember(memberInfo);
+    addMember(memberInfo);
 
     setMemberInfo(initialMemberInfo);
 
@@ -249,8 +254,8 @@ export default function FormDialog(FormDialogProps: FormDialogT) {
                   aria-labelledby="form-dialog-title"
                 >
                   <DialogTitle id="form-dialog-title">
-                    ‘고길동’님이 새 멤버로 추가됐어요! 법인카드 사용자로
-                    지정하시겠어요?
+                    <span>{memberManagementStore.memberList[0].name}</span>
+                    님이 새 멤버로 추가됐어요! 법인카드 사용자로 지정하시겠어요?
                   </DialogTitle>
                   <DialogContent
                     style={{
@@ -301,3 +306,5 @@ export default function FormDialog(FormDialogProps: FormDialogT) {
     </div>
   );
 }
+
+export default observer(FormDialog);

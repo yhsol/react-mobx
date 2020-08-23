@@ -12,6 +12,7 @@ import TodoNew2 from "./mobx-todo-2/component/TodoNew";
 import ExpensePolicy from "./gowid/Settings/ExpensePolicy/ExpensePolicy";
 import Counter from "./counter/component/Counter";
 import SuperMarket from "./supermarket/component/SuperMarket";
+import MemberManagement from "./gowid/MemberManagement/component/MemberManagement";
 function App() {
   const styles = {
     margin: "20px",
@@ -23,6 +24,10 @@ function App() {
     <>
       <div style={{ ...styles }}>
         <div>Eating Burger 🍔 | Check Todo 📃 | Read News 🗞</div>
+      </div>
+      <div style={{ ...styles }}>
+        MemberManagement
+        <MemberManagement />
       </div>
       <div style={{ ...styles }}>
         SuperMarket
